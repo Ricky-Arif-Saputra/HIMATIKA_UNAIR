@@ -77,7 +77,7 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
       </div>
 
       {/* Main Nav */}
-      <nav className="bg-unair-red text-white py-3 px-4 md:px-12 hidden md:block">
+      <nav className="bg-unair-red text-white py-3 px-4 md:px-12 flex flex-wrap overflow-x-auto">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex gap-6 text-[13px] font-bold uppercase tracking-wide">
             <NavItem label={t.pengurus} hasDropdown dropdownItems={[t.visiMisi, t.struktur, t.kegiatan]} onItemClick={(item) => {
