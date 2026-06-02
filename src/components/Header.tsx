@@ -21,19 +21,23 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
 
   return (
     <header className="w-full z-50 sticky top-0 shadow-md">
-      {/* Top Bar - Search Only */}
-      <div className="bg-unair-red text-white py-2 px-4 md:px-12 border-b border-white/10">
-        <div className="max-w-7xl mx-auto flex justify-end">
-          <div className="relative w-full max-w-[200px] flex items-center bg-[#f0f1f2] rounded-sm overflow-hidden">
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full bg-transparent text-[#191c1d] text-[11px] py-1.5 pl-3 pr-8 border-none focus:ring-0 outline-none"
-            />
-            <button className="absolute right-0 px-2 text-[#191c1d] hover:text-unair-red transition-colors">
-              <Search size={14} />
-            </button>
-          </div>
+      <div className="bg-unair-red text-white py-2 px-4 md:px-12 border-b border-white/10 flex items-center justify-between">
+        <div className="relative w-full max-w-[180px] flex items-center bg-[#f0f1f2] rounded-sm overflow-hidden">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="w-full bg-transparent text-[#191c1d] text-[11px] py-1.5 pl-3 pr-8 border-none focus:ring-0 outline-none"
+          />
+          <button className="absolute right-0 px-2 text-[#191c1d] hover:text-unair-red transition-colors">
+            <Search size={14} />
+          </button>
+        </div>
+        {/* Cabinet placeholder on the right */}
+        <div className="flex items-center space-x-4 ml-4">
+          {/* Future cabinet icons/buttons can go here */}
+          <button className="p-1 text-white hover:text-unair-gold transition-colors">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z"/></svg>
+          </button>
         </div>
       </div>
 
@@ -77,8 +81,8 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
       </div>
 
       {/* Main Nav */}
-      <nav className="bg-unair-red text-white py-3 px-4 md:px-12 flex flex-wrap overflow-x-auto">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+      <nav className="bg-unair-red text-white py-3 px-4 md:px-12 flex flex-wrap items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between w-full">
           <div className="flex gap-6 text-[13px] font-bold uppercase tracking-wide">
             <NavItem label={t.pengurus} hasDropdown dropdownItems={[t.visiMisi, t.struktur, t.kegiatan]} onItemClick={(item) => {
               if (item === t.visiMisi) onNavigate('visi-misi');
@@ -87,17 +91,17 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
             }} />
             <NavItem label={t.store} onClick={() => onNavigate('himatika-store')} />
             <NavItem label={t.ksatria} />
-            <NavItem 
-              label={t.komunitas} 
-              hasDropdown 
-              dropdownItems={['SPORT', 'E-SPORT', 'TARI', 'MUSIK', 'KEILMIAHAN']} 
+            <NavItem
+              label={t.komunitas}
+              hasDropdown
+              dropdownItems={['SPORT', 'E-SPORT', 'TARI', 'MUSIK', 'KEILMIAHAN']}
               onItemClick={(item) => {
                 onSelectKomunitas(item.toLowerCase());
-              }} 
+              }}
             />
-            <NavItem 
-              label={t.akademik} 
-              hasDropdown 
+            <NavItem
+              label={t.akademik}
+              hasDropdown
               dropdownItems={[t.bankSoal, t.infoKarir, t.pkl]}
               onItemClick={(item) => {
                 if (item === t.bankSoal) onNavigate('bank-soal');
@@ -105,9 +109,9 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
                 if (item === t.pkl) onNavigate('database-pkl');
               }}
             />
-            <NavItem 
-              label={t.sop} 
-              hasDropdown 
+            <NavItem
+              label={t.sop}
+              hasDropdown
               dropdownItems={[t.sopAdm, t.sopPub, t.sopMed]}
               onItemClick={(item) => {
                 if (item === t.sopAdm) onSelectSop('sop-administrasi');
@@ -117,14 +121,15 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
             />
             <NavItem label={t.kritikSaran} onClick={() => onNavigate('kritik-saran')} />
           </div>
-          <div className="relative">
-            <button 
+          {/* Language dropdown remains on the right */}
+          <div className="relative ml-4">
+            <button
               onClick={() => setIsLangDropdownOpen(!isLangDropdownOpen)}
               className="flex items-center gap-2 hover:text-unair-gold transition-colors focus:outline-none py-1"
             >
-              <img 
-                src={currentLang === 'id' ? 'https://flagcdn.com/w40/id.png' : 'https://flagcdn.com/w40/gb.png'} 
-                alt={currentLang === 'id' ? 'ID' : 'EN'} 
+              <img
+                src={currentLang === 'id' ? 'https://flagcdn.com/w40/id.png' : 'https://flagcdn.com/w40/gb.png'}
+                alt={currentLang === 'id' ? 'ID' : 'EN'}
                 className="h-3.5 w-5 object-cover rounded-sm shadow-sm"
               />
               <span className="text-[12px] font-bold uppercase">{currentLang}</span>
