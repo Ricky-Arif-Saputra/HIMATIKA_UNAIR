@@ -21,27 +21,25 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
 
   return (
     <header className="w-full z-50 sticky top-0 shadow-md">
-<div className="bg-unair-red text-white py-2 px-4 md:px-12 border-b border-white/10 flex items-center justify-between">
-  {/* Cabinet placeholder on the left */}
-  <div className="flex items-center space-x-4">
-    {/* Future cabinet icons/buttons can go here */}
-    <button className="p-1 text-white hover:text-unair-gold transition-colors">
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z"/></svg>
-    </button>
-  </div>
-  {/* Search on the right */}
-  <div className="relative w-full max-w-[180px] flex items-center bg-[#f0f1f2] rounded-sm overflow-hidden ml-auto">
-    <input
-      type="text"
-      placeholder="Search..."
-      className="w-full bg-transparent text-[#191c1d] text-[11px] py-1.5 pl-3 pr-8 border-none focus:ring-0 outline-none"
-    />
-    <button className="absolute right-0 px-2 text-[#191c1d] hover:text-unair-red transition-colors">
-      <Search size={14} />
-    </button>
-  </div>
-</div>
-
+      <div className="bg-unair-red text-white py-2 px-4 md:px-12 border-b border-white/10 flex items-center justify-between">
+        {/* Cabinet placeholder on the left */}
+        <div className="flex items-center space-x-2">
+          <button className="p-1 text-white hover:text-unair-gold transition-colors">
+            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16 8 8 0 000-16z"/></svg>
+          </button>
+        </div>
+        {/* Search expands to fill remaining width */}
+        <div className="relative flex-1 max-w-[200px] md:max-w-[180px] ml-2 flex items-center bg-[#f0f1f2] rounded-sm overflow-hidden">
+          <input
+            type="text"
+            placeholder="Search..."
+            className="flex-1 bg-transparent text-[#191c1d] text-[11px] py-1.5 pl-3 pr-8 border-none focus:ring-0 outline-none"
+          />
+          <button className="absolute right-0 px-2 text-[#191c1d] hover:text-unair-red transition-colors">
+            <Search size={14} />
+          </button>
+        </div>
+      </div>
 
       {/* Main Brand Section */}
       <div className="bg-white py-4 px-4 md:px-12 border-b border-border-subtle">
