@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Montserrat", sans-serif;
+
+  --color-unair-red: #8D101A;
+  --color-unair-gold: #F9C300;
+  --color-deep-navy: #1C355E;
+  --color-surface-grey: #F8F9FA;
+  --color-border-subtle: #E9ECEF;
+}
+
+@layer base {
+  body {
+    @apply font-sans text-[#191c1d] bg-surface-grey;
+  }
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
