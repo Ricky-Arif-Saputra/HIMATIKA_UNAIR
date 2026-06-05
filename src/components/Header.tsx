@@ -77,9 +77,9 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
       </div>
 
       {/* Main Nav */}
-      <nav className="bg-unair-red text-white py-2 md:py-3 px-4 md:px-12 overflow-x-auto hide-scrollbar relative">
-        <div className="max-w-7xl mx-auto flex items-center justify-between w-full min-w-max gap-6">
-          <div className="flex items-center gap-4 md:gap-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide">
+      <nav className="bg-unair-red text-white py-2 md:py-3 px-4 md:px-12 relative">
+        <div className="max-w-7xl mx-auto flex items-center justify-between w-full gap-6 overflow-x-auto hide-scrollbar">
+          <div className="flex items-center gap-4 md:gap-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide py-1">
             <NavItem label={t.pengurus} hasDropdown dropdownItems={currentLang === 'id' ? ['SUSUNAN', 'BADAN', 'PROGRAM KERJA'] : ['STRUCTURE', 'DIVISIONS', 'WORK PROGRAM']} onItemClick={(item) => {
               if (item === 'SUSUNAN' || item === 'STRUCTURE') onNavigate('struktur-pengurus');
               if (item === 'BADAN' || item === 'DIVISIONS') onNavigate('visi-misi');
@@ -232,7 +232,7 @@ function NavItem({ label, hasDropdown = false, dropdownItems, onItemClick, onCli
       </div>
 
       {hasDropdown && isOpen && (
-        <div className="absolute top-full left-0 pt-2 z-[9999] block">
+        <div className="fixed sm:absolute mt-2 sm:mt-0 left-auto pt-2 z-[99999] block">
           <div className="bg-white rounded-sm shadow-xl py-2 min-w-[220px] border border-border-subtle">
             {(dropdownItems ?? ['Link 1', 'Link 2']).map((item) => (
               <button
