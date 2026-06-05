@@ -216,46 +216,37 @@ function NavItem({ label, hasDropdown = false, dropdownItems, onItemClick, onCli
 
   return (
     <div 
-      className="relative group cursor-pointer py-1" 
-      onClick={(e) => { 
+      className="relative cursor-pointer py-1" 
+      onMouseEnter={() => hasDropdown && setIsOpen(true)}
+      onMouseLeave={() => hasDropdown && setIsOpen(false)}
+      onClick={() => {
         if (!hasDropdown) {
           onClick?.();
         } else {
           setIsOpen(!isOpen);
         }
       }}
-      onMouseEnter={() => hasDropdown && setIsOpen(true)}
-      onMouseLeave={() => hasDropdown && setIsOpen(false)}
     >
-      {href ? (
-        <a href={href} target="_blank" rel="noopener noreferrer" className="hover:text-unair-gold transition-colors flex items-center gap-1">
-          {label} {hasDropdown && <ChevronDown size={14} />}
-        </a>
-      ) : (
-        <a className="hover:text-unair-gold transition-colors flex items-center gap-1">
-          {label} {hasDropdown && <ChevronDown size={14} />}
-        </a>
-      )}
-      {hasDropdown && (
-        <div className={cn(
-          "absolute top-full left-0 pt-2 transition-all z-[999]",
-          isOpen ? "opacity-100 visible block" : "opacity-0 invisible hidden group-hover:opacity-100 group-hover:visible group-hover:block"
-        )}>
+      <div className="hover:text-unair-gold transition-colors flex items-center gap-1">
+        {label} {hasDropdown && <ChevronDown size={14} />}
+      </div>
+
+      {hasDropdown && isOpen && (
+        <div className="absolute top-full left-0 pt-2 z-[9999] block">
           <div className="bg-white rounded-sm shadow-xl py-2 min-w-[220px] border border-border-subtle">
             {(dropdownItems ?? ['Link 1', 'Link 2']).map((item) => (
-              <a
+              <button
                 key={item}
-                href="#"
                 onClick={(e) => { 
                   e.preventDefault(); 
                   e.stopPropagation();
                   onItemClick?.(item); 
                   setIsOpen(false);
                 }}
-                className="block px-4 py-2 text-[#191c1d] hover:bg-surface-grey hover:text-unair-red text-[13px] font-medium"
+                className="block w-full text-left px-4 py-2 text-[#191c1d] hover:bg-surface-grey hover:text-unair-red text-[13px] font-medium"
               >
                 {item}
-              </a>
+              </button>
             ))}
           </div>
         </div>
