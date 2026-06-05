@@ -43,25 +43,25 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
 
       {/* Main Brand Section */}
       <div className="bg-white py-4 px-4 md:px-12 border-b border-border-subtle">
-        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
-          <div className="flex items-center gap-4">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-nowrap">
+          <div className="flex items-center gap-4 flex-shrink-0">
             <div 
-              className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity"
+              className="flex items-center gap-2 md:gap-3 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => onNavigate('home')}
             >
               <img 
                 src="/logo_unair.png" 
                 alt="UNAIR Logo" 
-                className="h-10 md:h-16 w-auto flex-shrink-0"
+                className="h-8 md:h-16 w-auto flex-shrink-0"
               />
-              <div className="flex items-center divide-x-2 divide-unair-red/30 h-10 md:h-12">
-                <div className="pr-2 md:pr-4">
-                  <h2 className="font-display text-[9px] md:text-[18px] font-bold leading-tight text-unair-red tracking-wider uppercase">
+              <div className="flex items-center divide-x-2 divide-unair-red/30 h-8 md:h-12">
+                <div className="pr-1.5 md:pr-4">
+                  <h2 className="font-display text-[7px] md:text-[18px] font-bold leading-tight text-unair-red tracking-wider uppercase">
                     UNIVERSITAS<br />AIRLANGGA
                   </h2>
                 </div>
-                <div className="pl-2 md:pl-4">
-                  <h3 className="font-display text-[9px] md:text-[18px] font-medium leading-tight text-unair-red uppercase">
+                <div className="pl-1.5 md:pl-4">
+                  <h3 className="font-display text-[7px] md:text-[18px] font-medium leading-tight text-unair-red uppercase">
                     FAKULTAS<br />SAINS DAN TEKNOLOGI
                   </h3>
                 </div>
@@ -69,9 +69,9 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
             </div>
           </div>
           
-          <div className="flex flex-col items-end md:items-center border-l-2 border-unair-red/20 pl-3 md:pl-6">
-            <span className="font-display text-xs md:text-xl font-extrabold text-unair-red tracking-tight leading-none">SATYA ADHIKARTA</span>
-            <span className="text-[7px] md:text-[9px] font-bold text-[#59413f] uppercase tracking-[0.1em] md:tracking-[0.2em] mt-1">Himpunan Mahasiswa Matematika</span>
+          <div className="flex flex-col items-end border-l-2 border-unair-red/20 pl-2 md:pl-6 flex-shrink-0">
+            <span className="font-display text-[9px] md:text-xl font-extrabold text-unair-red tracking-tight leading-none">SATYA ADHIKARTA</span>
+            <span className="text-[5px] md:text-[9px] font-bold text-[#59413f] uppercase tracking-[0.05em] md:tracking-[0.2em] mt-0.5">Himpunan Mahasiswa Matematika</span>
           </div>
         </div>
       </div>
@@ -212,8 +212,21 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
 }
 
 function NavItem({ label, hasDropdown = false, dropdownItems, onItemClick, onClick, href }: { label: string; hasDropdown?: boolean; dropdownItems?: string[]; onItemClick?: (item: string) => void; onClick?: () => void; href?: string }) {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <div className="relative group cursor-pointer py-1" onClick={(e) => { if (!hasDropdown) onClick?.(); }}>
+    <div 
+      className="relative group cursor-pointer py-1" 
+      onClick={(e) => { 
+        if (!hasDropdown) {
+          onClick?.();
+        } else {
+          setIsOpen(!isOpen);
+        }
+      }}
+      onMouseEnter={() => hasDropdown && setIsOpen(true)}
+      onMouseLeave={() => hasDropdown && setIsOpen(false)}
+    >
       {href ? (
         <a href={href} target="_blank" rel="noopener noreferrer" className="hover:text-unair-gold transition-colors flex items-center gap-1">
           {label} {hasDropdown && <ChevronDown size={14} />}
@@ -224,13 +237,21 @@ function NavItem({ label, hasDropdown = false, dropdownItems, onItemClick, onCli
         </a>
       )}
       {hasDropdown && (
-        <div className="absolute top-full left-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+        <div className={cn(
+          "absolute top-full left-0 pt-2 transition-all z-50",
+          isOpen ? "opacity-100 visible" : "opacity-0 invisible group-hover:opacity-100 group-hover:visible"
+        )}>
           <div className="bg-white rounded-sm shadow-xl py-2 min-w-[220px] border border-border-subtle">
             {(dropdownItems ?? ['Link 1', 'Link 2']).map((item) => (
               <a
                 key={item}
                 href="#"
-                onClick={(e) => { e.preventDefault(); onItemClick?.(item); }}
+                onClick={(e) => { 
+                  e.preventDefault(); 
+                  e.stopPropagation();
+                  onItemClick?.(item); 
+                  setIsOpen(false);
+                }}
                 className="block px-4 py-2 text-[#191c1d] hover:bg-surface-grey hover:text-unair-red text-[13px] font-medium"
               >
                 {item}
