@@ -79,43 +79,47 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
       {/* Main Nav */}
       <nav className="bg-unair-red text-white py-2 md:py-3 px-4 md:px-12 relative z-40">
         <div className="max-w-7xl mx-auto flex items-center justify-between w-full gap-6">
-          <div className="flex items-center gap-4 md:gap-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide py-1 overflow-x-auto hide-scrollbar min-w-0 flex-1 whitespace-nowrap">
-            <NavItem label={t.pengurus} hasDropdown dropdownItems={currentLang === 'id' ? ['SUSUNAN', 'BADAN', 'PROGRAM KERJA'] : ['STRUCTURE', 'DIVISIONS', 'WORK PROGRAM']} onItemClick={(item) => {
-              if (item === 'SUSUNAN' || item === 'STRUCTURE') onNavigate('struktur-pengurus');
-              if (item === 'BADAN' || item === 'DIVISIONS') onNavigate('visi-misi');
-              if (item === 'PROGRAM KERJA' || item === 'WORK PROGRAM') onNavigate('kegiatan');
-            }} />
-            <NavItem label={t.store} onClick={() => onNavigate('himatika-store')} />
-            <NavItem label={t.ksatria} />
-            <NavItem
-              label={t.komunitas}
-              hasDropdown
-              dropdownItems={['SPORT', 'E-SPORT', 'TARI', 'MUSIK', 'KEILMIAHAN']}
-              onItemClick={(item) => {
-                onSelectKomunitas(item.toLowerCase());
-              }}
-            />
-            <NavItem
-              label={t.akademik}
-              hasDropdown
-              dropdownItems={[t.bankSoal, t.infoKarir, t.pkl]}
-              onItemClick={(item) => {
-                if (item === t.bankSoal) onNavigate('bank-soal');
-                if (item === t.infoKarir) onNavigate('info-karir');
-                if (item === t.pkl) onNavigate('database-pkl');
-              }}
-            />
-            <NavItem
-              label={t.sop}
-              hasDropdown
-              dropdownItems={[t.sopAdm, t.sopPub, t.sopMed]}
-              onItemClick={(item) => {
-                if (item === t.sopAdm) onSelectSop('sop-administrasi');
-                if (item === t.sopPub) onSelectSop('sop-publikasi');
-                if (item === t.sopMed) onSelectSop('sop-media-partner');
-              }}
-            />
-            <NavItem label={t.kritikSaran} onClick={() => onNavigate('kritik-saran')} />
+          <div className="flex items-center gap-4 md:gap-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide py-1 min-w-0 flex-1 whitespace-nowrap">
+            <div className="flex-1 overflow-x-auto overflow-y-visible hide-scrollbar">
+              <div className="flex items-center gap-4 md:gap-6">
+                <NavItem label={t.pengurus} hasDropdown dropdownItems={currentLang === 'id' ? ['SUSUNAN', 'BADAN', 'PROGRAM KERJA'] : ['STRUCTURE', 'DIVISIONS', 'WORK PROGRAM']} onItemClick={(item) => {
+                  if (item === 'SUSUNAN' || item === 'STRUCTURE') onNavigate('struktur-pengurus');
+                  if (item === 'BADAN' || item === 'DIVISIONS') onNavigate('visi-misi');
+                  if (item === 'PROGRAM KERJA' || item === 'WORK PROGRAM') onNavigate('kegiatan');
+                }} />
+                <NavItem label={t.store} onClick={() => onNavigate('himatika-store')} />
+                <NavItem label={t.ksatria} />
+                <NavItem
+                  label={t.komunitas}
+                  hasDropdown
+                  dropdownItems={['SPORT', 'E-SPORT', 'TARI', 'MUSIK', 'KEILMIAHAN']}
+                  onItemClick={(item) => {
+                    onSelectKomunitas(item.toLowerCase());
+                  }}
+                />
+                <NavItem
+                  label={t.akademik}
+                  hasDropdown
+                  dropdownItems={[t.bankSoal, t.infoKarir, t.pkl]}
+                  onItemClick={(item) => {
+                    if (item === t.bankSoal) onNavigate('bank-soal');
+                    if (item === t.infoKarir) onNavigate('info-karir');
+                    if (item === t.pkl) onNavigate('database-pkl');
+                  }}
+                />
+                <NavItem
+                  label={t.sop}
+                  hasDropdown
+                  dropdownItems={[t.sopAdm, t.sopPub, t.sopMed]}
+                  onItemClick={(item) => {
+                    if (item === t.sopAdm) onSelectSop('sop-administrasi');
+                    if (item === t.sopPub) onSelectSop('sop-publikasi');
+                    if (item === t.sopMed) onSelectSop('sop-media-partner');
+                  }}
+                />
+                <NavItem label={t.kritikSaran} onClick={() => onNavigate('kritik-saran')} />
+              </div>
+            </div>
           </div>
           {/* Language dropdown remains on the right */}
           <div className="relative ml-4">
