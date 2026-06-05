@@ -56,9 +56,24 @@ export default function StrukturPengurus() {
               {ketua.jabatan}
             </div>
 
-            {/* Avatar placeholder */}
-            <div className="w-24 h-24 bg-unair-red/5 rounded-full flex items-center justify-center mx-auto mb-6 border border-unair-red/20 shadow-inner">
-              <User size={48} className="text-unair-red" />
+            {/* Foto dari folder public /kahim.png */}
+            <div className="w-24 h-24 mx-auto mb-6 rounded-full overflow-hidden border border-unair-red/20 shadow-md">
+              <img 
+                src="/kahim.png" 
+                alt="Ricky Arif Saputra" 
+                className="w-full h-full object-cover object-center"
+                onError={(e) => {
+                  // Fallback to initial if image fails to load
+                  e.currentTarget.style.display = 'none';
+                  const parent = e.currentTarget.parentElement;
+                  if (parent) {
+                    const fallback = document.createElement('div');
+                    fallback.className = "w-full h-full bg-unair-red/5 flex items-center justify-center";
+                    fallback.innerHTML = `<svg class="w-12 h-12 text-unair-red" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>`;
+                    parent.appendChild(fallback);
+                  }
+                }}
+              />
             </div>
 
             {/* Ketua Details */}
