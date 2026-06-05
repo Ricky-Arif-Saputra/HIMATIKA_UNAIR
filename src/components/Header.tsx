@@ -43,11 +43,8 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
 
       {/* Main Brand Section */}
       <div className="bg-white py-4 px-4 md:px-12 border-b border-border-subtle">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
+        <div className="max-w-7xl mx-auto flex items-center justify-between gap-4 flex-wrap md:flex-nowrap">
           <div className="flex items-center gap-4">
-            <button className="md:hidden" onClick={() => setIsMobileMenuOpen(true)}>
-              <Menu size={32} className="text-unair-red" />
-            </button>
             <div 
               className="flex items-center gap-3 cursor-pointer hover:opacity-90 transition-opacity"
               onClick={() => onNavigate('home')}
@@ -55,16 +52,16 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
               <img 
                 src="/logo_unair.png" 
                 alt="UNAIR Logo" 
-                className="h-12 md:h-16 w-auto"
+                className="h-10 md:h-16 w-auto flex-shrink-0"
               />
               <div className="flex items-center divide-x-2 divide-unair-red/30 h-10 md:h-12">
-                <div className="pr-4">
-                  <h2 className="font-display text-[12px] md:text-[18px] font-bold leading-tight text-unair-red tracking-wider uppercase">
+                <div className="pr-2 md:pr-4">
+                  <h2 className="font-display text-[9px] md:text-[18px] font-bold leading-tight text-unair-red tracking-wider uppercase">
                     UNIVERSITAS<br />AIRLANGGA
                   </h2>
                 </div>
-                <div className="pl-4">
-                  <h3 className="font-display text-[12px] md:text-[18px] font-medium leading-tight text-unair-red uppercase">
+                <div className="pl-2 md:pl-4">
+                  <h3 className="font-display text-[9px] md:text-[18px] font-medium leading-tight text-unair-red uppercase">
                     FAKULTAS<br />SAINS DAN TEKNOLOGI
                   </h3>
                 </div>
@@ -72,17 +69,17 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
             </div>
           </div>
           
-          <div className="hidden lg:flex flex-col items-center border-l-2 border-unair-red/20 pl-6 ml-6">
-            <span className="font-display text-xl font-extrabold text-unair-red tracking-tight leading-none">SATYA ADHIKARTA</span>
-            <span className="text-[9px] font-bold text-[#59413f] uppercase tracking-[0.2em] mt-1">Himpunan Mahasiswa Matematika</span>
+          <div className="flex flex-col items-end md:items-center border-l-2 border-unair-red/20 pl-3 md:pl-6">
+            <span className="font-display text-xs md:text-xl font-extrabold text-unair-red tracking-tight leading-none">SATYA ADHIKARTA</span>
+            <span className="text-[7px] md:text-[9px] font-bold text-[#59413f] uppercase tracking-[0.1em] md:tracking-[0.2em] mt-1">Himpunan Mahasiswa Matematika</span>
           </div>
         </div>
       </div>
 
       {/* Main Nav */}
-      <nav className="bg-unair-red text-white py-3 px-4 md:px-12 flex flex-wrap items-center justify-between">
-        <div className="max-w-7xl mx-auto flex items-center justify-between w-full">
-          <div className="flex gap-6 text-[13px] font-bold uppercase tracking-wide">
+      <nav className="bg-unair-red text-white py-2 md:py-3 px-4 md:px-12 overflow-x-auto hide-scrollbar">
+        <div className="max-w-7xl mx-auto flex items-center justify-between w-full min-w-max gap-6">
+          <div className="flex gap-4 md:gap-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide">
             <NavItem label={t.pengurus} hasDropdown dropdownItems={[t.visiMisi, t.struktur, t.kegiatan]} onItemClick={(item) => {
               if (item === t.visiMisi) onNavigate('visi-misi');
               if (item === t.struktur) onNavigate('struktur-pengurus');
