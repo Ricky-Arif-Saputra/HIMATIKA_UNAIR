@@ -80,10 +80,10 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
       <nav className="bg-unair-red text-white py-2 md:py-3 px-4 md:px-12 overflow-x-auto hide-scrollbar">
         <div className="max-w-7xl mx-auto flex items-center justify-between w-full min-w-max gap-6">
           <div className="flex gap-4 md:gap-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide">
-            <NavItem label={t.pengurus} hasDropdown dropdownItems={[t.visiMisi, t.struktur, t.kegiatan]} onItemClick={(item) => {
-              if (item === t.visiMisi) onNavigate('visi-misi');
-              if (item === t.struktur) onNavigate('struktur-pengurus');
-              if (item === t.kegiatan) onNavigate('kegiatan');
+            <NavItem label={t.pengurus} hasDropdown dropdownItems={currentLang === 'id' ? ['Pengurus', 'Bidang', 'Program Kerja'] : ['Board', 'Divisions', 'Work Program']} onItemClick={(item) => {
+              if (item === 'Pengurus' || item === 'Board') onNavigate('visi-misi');
+              if (item === 'Bidang' || item === 'Divisions') onNavigate('struktur-pengurus');
+              if (item === 'Program Kerja' || item === 'Work Program') onNavigate('kegiatan');
             }} />
             <NavItem label={t.store} onClick={() => onNavigate('himatika-store')} />
             <NavItem label={t.ksatria} />
