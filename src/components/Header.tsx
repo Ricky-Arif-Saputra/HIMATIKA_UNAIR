@@ -77,9 +77,9 @@ export default function Header({ onNavigate, currentPage, onSelectKomunitas, onS
       </div>
 
       {/* Main Nav */}
-      <nav className="bg-unair-red text-white py-2 md:py-3 px-4 md:px-12">
-        <div className="max-w-7xl mx-auto flex items-center justify-between w-full gap-6 flex-wrap">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 md:gap-x-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide">
+      <nav className="bg-unair-red text-white py-2 md:py-3 px-4 md:px-12 overflow-x-auto hide-scrollbar relative">
+        <div className="max-w-7xl mx-auto flex items-center justify-between w-full min-w-max gap-6">
+          <div className="flex items-center gap-4 md:gap-6 text-[11px] md:text-[13px] font-bold uppercase tracking-wide">
             <NavItem label={t.pengurus} hasDropdown dropdownItems={currentLang === 'id' ? ['SUSUNAN', 'BADAN', 'PROGRAM KERJA'] : ['STRUCTURE', 'DIVISIONS', 'WORK PROGRAM']} onItemClick={(item) => {
               if (item === 'SUSUNAN' || item === 'STRUCTURE') onNavigate('struktur-pengurus');
               if (item === 'BADAN' || item === 'DIVISIONS') onNavigate('visi-misi');
@@ -243,7 +243,7 @@ function NavItem({ label, hasDropdown = false, dropdownItems, onItemClick, onCli
                   onItemClick?.(item); 
                   setIsOpen(false);
                 }}
-                className="block w-full text-left px-4 py-2 text-[#191c1d] hover:bg-surface-grey hover:text-unair-red text-[13px] font-medium"
+                className="block w-full text-left px-4 py-2 text-[#191c1d] hover:bg-surface-grey hover:text-unair-red text-[11px] md:text-[13px] font-bold uppercase tracking-wide"
               >
                 {item}
               </button>
