@@ -238,8 +238,8 @@ function NavItem({ label, hasDropdown = false, dropdownItems, onItemClick, onCli
       )}
       {hasDropdown && (
         <div className={cn(
-          "absolute top-full left-0 pt-2 transition-all z-50",
-          isOpen ? "opacity-100 visible" : "opacity-0 invisible group-hover:opacity-100 group-hover:visible"
+          "absolute top-full left-0 pt-2 transition-all z-[999]",
+          isOpen ? "opacity-100 visible block" : "opacity-0 invisible hidden group-hover:opacity-100 group-hover:visible group-hover:block"
         )}>
           <div className="bg-white rounded-sm shadow-xl py-2 min-w-[220px] border border-border-subtle">
             {(dropdownItems ?? ['Link 1', 'Link 2']).map((item) => (
